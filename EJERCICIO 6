@@ -1,0 +1,229 @@
+C++
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+
+    int estudiantes, opTransporte, dias;
+    double costoHospedajeDia;
+    char alimentacion, descuento, coordinador;
+    double tarifaTransporte, costoTransporte, costoHospedaje, costoAlimentacion;
+    double subtotal, descuentoMonto, total, costoPorEstudiante;
+
+    cout << fixed << setprecision(2);
+
+    cout << "\nNumero de estudiantes: ";
+    cin  >> estudiantes;
+
+    if (estudiantes <= 0) {
+        cout << "Numero de estudiantes invalido." << endl;
+        return 0;
+    }
+
+    cout << "Tipo de transporte (1=Bus $20  2=Van $30  3=Avion $150): ";
+    cin  >> opTransporte;
+
+
+    if (opTransporte == 1) tarifaTransporte = 20.0;
+    else if (opTransporte == 2) tarifaTransporte = 30.0;
+    else if (opTransporte == 3) tarifaTransporte = 150.0;
+    else {
+        cout << "Opcion de transporte invalida." << endl;
+        return 0;
+    }
+
+    cout << "Numero de dias: ";
+    cin  >> dias;
+
+    cout << "Costo de hospedaje por dia por persona: $";
+    cin  >> costoHospedajeDia;
+
+    cout << "Incluye alimentacion? ($10/persona/dia) (S/N): ";
+    cin  >> alimentacion;
+
+    cout << "Aplicar descuento institucional? (S/N): ";
+    cin  >> descuento;
+
+    cout << "Hay coordinador que viaja gratis en transporte? (S/N): ";
+    cin  >> coordinador;
+
+
+    if (estudiantes > 20)
+        tarifaTransporte *= 0.90;
+
+
+    if (coordinador == 'S' || coordinador == 's')
+        costoTransporte = tarifaTransporte * (estudiantes - 1);
+    else
+        costoTransporte = tarifaTransporte * estudiantes;
+
+    if (dias > 3)
+        costoHospedajeDia *= 0.85;
+
+    costoHospedaje = costoHospedajeDia * dias * estudiantes;
+
+
+    if (alimentacion == 'S' || alimentacion == 's')
+        costoAlimentacion = 10.0 * dias * estudiantes;
+    else
+        costoAlimentacion = 0.0;
+
+
+    subtotal = costoTransporte + costoHospedaje + costoAlimentacion;
+
+
+    descuentoMonto = 0.0;
+    if ((descuento == 'S' || descuento == 's') && subtotal > 2000.0)
+        descuentoMonto = subtotal * 0.10;
+
+
+    total = subtotal - descuentoMonto;
+    costoPorEstudiante = total / estudiantes;
+
+    cout << endl;
+    cout << "=====================================" << endl;
+    cout << "           RESULTADOS                " << endl;
+    cout << "=====================================" << endl;
+    cout << "Costo de transporte  : $" << costoTransporte    << endl;
+    cout << "Costo de hospedaje   : $" << costoHospedaje     << endl;
+    cout << "Costo de alimentacion: $" << costoAlimentacion  << endl;
+    cout << "Descuento aplicado   : $" << descuentoMonto     << endl;
+    cout << "-------------------------------------" << endl;
+    cout << "TOTAL GENERAL        : $" << total              << endl;
+    cout << "TOTAL POR ESTUDIANTE : $" << costoPorEstudiante << endl;
+    cout << "=====================================" << endl;
+
+    // Recomendación
+    if (costoPorEstudiante > 300.0)
+        cout << "RECOMENDACION: VIAJE NO RECOMENDABLE" << endl;
+    else
+        cout << "RECOMENDACION: VIAJE RECOMENDABLE" << endl;
+
+    cout << "=====================================" << endl;
+
+    return 0;
+}
+
+
+PSeINT
+
+Algoritmo ViajeEstudiantil
+
+    Definir estudiantes, opTransporte, dias Como Entero
+    Definir costoHospedajeDia, tarifaTransporte, costoTransporte Como Real
+    Definir costoHospedaje, costoAlimentacion, subtotal Como Real
+    Definir descuentoMonto, total, costoPorEstudiante Como Real
+    Definir alimentacion, descuento, coordinador Como Caracter
+
+    Escribir "Numero de estudiantes: "
+    Leer estudiantes
+
+    Si estudiantes <= 0 Entonces
+        Escribir "Numero invalido"
+        FinAlgoritmo
+    FinSi
+
+    Escribir "Tipo transporte (1=Bus, 2=Van, 3=Avion): "
+    Leer opTransporte
+
+    Si opTransporte = 1 Entonces
+        tarifaTransporte <- 20
+    Sino
+        Si opTransporte = 2 Entonces
+            tarifaTransporte <- 30
+        Sino
+            Si opTransporte = 3 Entonces
+                tarifaTransporte <- 150
+            Sino
+                Escribir "Opcion invalida"
+                FinAlgoritmo
+            FinSi
+        FinSi
+    FinSi
+
+    Escribir "Numero de dias: "
+    Leer dias
+
+    Escribir "Costo hospedaje por dia: "
+    Leer costoHospedajeDia
+
+    Escribir "Alimentacion (S/N): "
+    Leer alimentacion
+
+    Escribir "Descuento (S/N): "
+    Leer descuento
+
+    Escribir "Coordinador gratis (S/N): "
+    Leer coordinador
+
+    // Descuento transporte
+    Si estudiantes > 20 Entonces
+        tarifaTransporte <- tarifaTransporte * 0.90
+    FinSi
+
+    // Transporte
+    Si coordinador = "S" Entonces
+        costoTransporte <- tarifaTransporte * (estudiantes - 1)
+    Sino
+        Si coordinador = "s" Entonces
+            costoTransporte <- tarifaTransporte * (estudiantes - 1)
+        Sino
+            costoTransporte <- tarifaTransporte * estudiantes
+        FinSi
+    FinSi
+
+    // Hospedaje
+    Si dias > 3 Entonces
+        costoHospedajeDia <- costoHospedajeDia * 0.85
+    FinSi
+
+    costoHospedaje <- costoHospedajeDia * dias * estudiantes
+
+    // Alimentación
+    Si alimentacion = "S" Entonces
+        costoAlimentacion <- 10 * dias * estudiantes
+    Sino
+        Si alimentacion = "s" Entonces
+            costoAlimentacion <- 10 * dias * estudiantes
+        Sino
+            costoAlimentacion <- 0
+        FinSi
+    FinSi
+
+    // Subtotal
+    subtotal <- costoTransporte + costoHospedaje + costoAlimentacion
+
+    // Descuento institucional
+    descuentoMonto <- 0
+    Si descuento = "S" Entonces
+        Si subtotal > 2000 Entonces
+            descuentoMonto <- subtotal * 0.10
+        FinSi
+    Sino
+        Si descuento = "s" Entonces
+            Si subtotal > 2000 Entonces
+                descuentoMonto <- subtotal * 0.10
+            FinSi
+        FinSi
+    FinSi
+
+    // Total
+    total <- subtotal - descuentoMonto
+    costoPorEstudiante <- total / estudiantes
+
+    // Resultados
+    Escribir "====================================="
+    Escribir "TOTAL: ", total
+    Escribir "POR ESTUDIANTE: ", costoPorEstudiante
+
+    Si costoPorEstudiante > 300 Entonces
+        Escribir "RECOMENDACION: NO RECOMENDABLE"
+    Sino
+        Escribir "RECOMENDACION: RECOMENDABLE"
+    FinSi
+
+    Escribir "====================================="
+
+FinAlgoritmo
