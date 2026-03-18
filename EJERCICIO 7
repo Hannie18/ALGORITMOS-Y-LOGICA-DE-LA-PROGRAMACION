@@ -1,0 +1,156 @@
+C++ 
+#include <iostream>
+
+#include <string>
+using namespace std;
+
+int main() {
+    double lecturaAnterior, lecturaActual, consumoKwh, costoBase, totalPagar, ajusteFactura, consumoPorHabitante;
+    int numeroHabitantes;
+    string tipoVivienda, tieneArtefactosAltoConsumo, tieneDeudaAnterior, mensajeAlerta;
+
+    cout << "======================= EVALUADOR ELECTRICO =======================" << endl;
+   
+    cout << "Lectura anterior (kWh): ";
+    cin >> lecturaAnterior;
+    cout << "Lectura actual (kWh): ";
+    cin >> lecturaActual;
+    cout << "Tipo vivienda (S=Social, N=Normal): ";
+    cin >> tipoVivienda;
+    cout << "Numero de habitantes: ";
+    cin >> numeroHabitantes;
+    cout << "Tiene artefactos alto consumo? (S/N): ";
+    cin >> tieneArtefactosAltoConsumo;
+    cout << "Tiene deuda anterior? (S/N): ";
+    cin >> tieneDeudaAnterior;
+
+    consumoKwh = lecturaActual - lecturaAnterior;
+
+    if (consumoKwh <= 0) {
+        mensajeAlerta = "LECTURA INVALIDA";
+        consumoKwh = costoBase = ajusteFactura = totalPagar = 0;
+    } else {
+
+        if (consumoKwh <= 100) {
+            costoBase = consumoKwh * 0.15;
+        } else if (consumoKwh <= 300) {
+            costoBase = 100*0.15 + (consumoKwh-100)*0.25;
+        } else {
+            costoBase = 100*0.15 + 200*0.25 + (consumoKwh-300)*0.35;
+        }
+
+        ajusteFactura = 0;
+
+        if (tipoVivienda == "S" && consumoKwh <= 50) {
+            ajusteFactura -= (costoBase * 0.3);
+        }
+
+
+        if (tieneDeudaAnterior == "S" || tieneDeudaAnterior == "s") {
+            ajusteFactura += (costoBase * 0.2);
+        }
+
+        totalPagar = costoBase + ajusteFactura;
+
+
+        consumoPorHabitante = consumoKwh / numeroHabitantes;
+
+        if (consumoPorHabitante > 15) {
+            mensajeAlerta = "ALERTA: CONSUMO EXCESIVO POR HABITANTE";
+        } else if ((tieneArtefactosAltoConsumo == "S" || tieneArtefactosAltoConsumo == "s") && consumoKwh > 200) {
+            mensajeAlerta = "RIESGO: SOBREFACTURACION POR ARTEFACTOS";
+        } else {
+            mensajeAlerta = "CONSUMO NORMAL";
+        }
+    }
+
+    cout << "\n=== FACTURA ELECTRICA ===" << endl;
+
+    cout << "CONSUMO TOTAL: " << consumoKwh << " kWh" << endl;
+    cout << "COSTO BASE: $" << costoBase << endl;
+    cout << "AJUSTE (subsidio/recargo): $" << ajusteFactura << endl;
+    cout << "TOTAL A PAGAR: $" << totalPagar << endl;
+    cout << "ALERTA: " << mensajeAlerta << endl;
+
+    return 0;
+}
+
+
+
+PSeINT
+
+Definir mensajeAlerta Como Cadena
+	
+	Escribir "======================= EVALUADOR ELECTRICO ======================="
+	
+	
+	Escribir "Lectura anterior (kWh): "
+	Leer lecturaAnterior
+	Escribir "Lectura actual (kWh): "
+	Leer lecturaActual
+	Escribir "Tipo vivienda (S=Social, N=Normal): "
+	Leer tipoVivienda
+	Escribir "Numero de habitantes: "
+	Leer numeroHabitantes
+	Escribir "Tiene artefactos alto consumo? (S/N): "
+	Leer tieneArtefactosAltoConsumo
+	Escribir "Tiene deuda anterior? (S/N): "
+	Leer tieneDeudaAnterior
+	
+	consumoKwh <- lecturaActual - lecturaAnterior
+	
+	Si consumoKwh <= 0 Entonces
+		mensajeAlerta <- "LECTURA INVALIDA"
+		consumoKwh <- 0
+		costoBase <- 0
+		ajusteFactura <- 0
+		totalPagar <- 0
+	SiNo
+		
+		Si consumoKwh <= 100 Entonces
+			costoBase <- consumoKwh * 0.15
+		SiNo
+			Si consumoKwh <= 300 Entonces
+				costoBase <- 100*0.15 + (consumoKwh-100)*0.25
+			SiNo
+				costoBase <- 100*0.15 + 200*0.25 + (consumoKwh-300)*0.35
+			FinSi
+		FinSi
+		
+		ajusteFactura <- 0
+		
+		
+		Si tipoVivienda = "S" Y consumoKwh <= 50 Entonces
+			ajusteFactura <- ajusteFactura - (costoBase * 0.3)
+		FinSi
+		
+		
+		Si tieneDeudaAnterior = "S" Entonces
+			ajusteFactura <- ajusteFactura + (costoBase * 0.2)
+		FinSi
+		
+		totalPagar <- costoBase + ajusteFactura
+		
+		
+		consumoPorHabitante <- consumoKwh / numeroHabitantes
+		
+		Si consumoPorHabitante > 15 Entonces
+			mensajeAlerta <- "ALERTA: CONSUMO EXCESIVO POR HABITANTE"
+		SiNo
+			Si tieneArtefactosAltoConsumo = "S" Y consumoKwh > 200 Entonces
+				mensajeAlerta <- "RIESGO: SOBREFACTURACION POR ARTEFACTOS"
+			SiNo
+				mensajeAlerta <- "CONSUMO NORMAL"
+			FinSi
+		FinSi
+	FinSi
+	
+	Escribir "=== FACTURA ELECTRICA ==="
+	Escribir "CONSUMO TOTAL: ", consumoKwh, " kWh"
+	Escribir "COSTO BASE: $", costoBase
+	Escribir "AJUSTE (subsidio/recargo): $", ajusteFactura
+	Escribir "TOTAL A PAGAR: $", totalPagar
+	Escribir "ALERTA: ", mensajeAlerta
+	
+FinAlgoritmo
+
