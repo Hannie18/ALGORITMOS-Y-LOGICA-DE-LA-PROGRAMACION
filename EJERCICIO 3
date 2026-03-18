@@ -1,0 +1,160 @@
+C++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    double ladoA, ladoB, ladoC, alturaBase, anguloPrincipal;
+    string esValido, clasificacionLados, clasificacionAngulos, mensajeConsistencia;
+    double areaTriangulo, ladoMayor;
+
+
+    cout << "Ingrese lado A: "<<endl;
+    cin >> ladoA;
+    cout << "Ingrese lado B: "<<endl;
+    cin >> ladoB;
+    cout << "Ingrese lado C: "<<endl;
+    cin >> ladoC;
+    cout << "Ingrese altura a la base: "<<endl;
+    cin >> alturaBase;
+    cout << "Ingrese angulo principal "<<endl;
+    cin >> anguloPrincipal;
+
+
+    if ((ladoA + ladoB <= ladoC) || (ladoA + ladoC <= ladoB) || (ladoB + ladoC <= ladoA)) {
+        esValido = "NO VALIDO";
+        clasificacionLados = "NO APLICA";
+        clasificacionAngulos = "NO APLICA";
+        areaTriangulo = 0;
+        mensajeConsistencia = "NO SE PUEDE ANALIZAR";
+    } else {
+        esValido = "VALIDO";
+
+
+        if (ladoA == ladoB && ladoB == ladoC) {
+            clasificacionLados = "EQUILATERO";
+        } else if (ladoA == ladoB || ladoA == ladoC || ladoB == ladoC) {
+            clasificacionLados = "ISOSCELES";
+        } else {
+            clasificacionLados = "ESCALENO";
+        }
+
+
+        if (anguloPrincipal == 90) {
+            clasificacionAngulos = "RECTANGULO";
+        } else if (anguloPrincipal < 90) {
+            clasificacionAngulos = "ACUTANGULO";
+        } else {
+            clasificacionAngulos = "OBTUSANGULO";
+        }
+
+
+        areaTriangulo = (ladoA * alturaBase) / 2;
+
+
+        ladoMayor = ladoA;
+        if (ladoB > ladoMayor) ladoMayor = ladoB;
+        if (ladoC > ladoMayor) ladoMayor = ladoC;
+
+
+        if (alturaBase > ladoMayor) {
+            mensajeConsistencia = "ADVERTENCIA: ALTURA INCONSISTENTE";
+        } else {
+            mensajeConsistencia = "ALTURA CONSISTENTE";
+        }
+    }
+
+    cout << "\n=== RESULTADO ANALISIS TRIANGULO ===" << endl;
+    cout << "VALIDEZ: " << esValido << endl;
+    cout << "POR LADOS: " << clasificacionLados << endl;
+    cout << "POR ANGULOS: " << clasificacionAngulos << endl;
+    cout << "AREA: " << areaTriangulo << endl;
+    cout << "CONSISTENCIA: " << mensajeConsistencia << endl;
+
+    return 0;
+}
+
+
+
+PSeINT
+
+Algoritmo Triangulo_Inteligente
+	Definir ladoA, ladoB, ladoC, alturaBase, anguloPrincipal Como Real
+	Definir esValido, clasificacionLados, clasificacionAngulos, mensajeConsistencia Como Cadena
+	Definir areaTriangulo Como Real
+	Definir ladoMayor Como Real
+	
+	Escribir "======================= TRIANGULO INTELIGENTE ======================"
+	Escribir "======================= ANALISIS COMPLETO =========================="
+	
+	Escribir "Ingrese lado A: "
+	Leer ladoA
+	Escribir "Ingrese lado B: "
+	Leer ladoB
+	Escribir "Ingrese lado C: "
+	Leer ladoC
+	Escribir "Ingrese altura a la base: "
+	Leer alturaBase
+	Escribir "Ingrese angulo principal (grados): "
+	Leer anguloPrincipal
+	
+	Si (ladoA + ladoB <= ladoC) O (ladoA + ladoC <= ladoB) O (ladoB + ladoC <= ladoA) Entonces
+		esValido <- "NO VALIDO"
+		clasificacionLados <- "NO APLICA"
+		clasificacionAngulos <- "NO APLICA"
+		areaTriangulo <- 0
+		mensajeConsistencia <- "NO SE PUEDE ANALIZAR"
+	SiNo
+		esValido <- "VALIDO"
+		
+		
+		Si ladoA = ladoB Y ladoB = ladoC Entonces
+			clasificacionLados <- "EQUILATERO"
+		SiNo
+			Si (ladoA = ladoB) O (ladoA = ladoC) O (ladoB = ladoC) Entonces
+				clasificacionLados <- "ISOSCELES"
+			SiNo
+				clasificacionLados <- "ESCALENO"
+			FinSi
+		FinSi
+		
+		// Clasificacion por angulos
+		Si anguloPrincipal = 90 Entonces
+			clasificacionAngulos <- "RECTANGULO"
+		SiNo
+			Si anguloPrincipal < 90 Entonces
+				clasificacionAngulos <- "ACUTANGULO"
+			SiNo
+				clasificacionAngulos <- "OBTUSANGULO"
+			FinSi
+		FinSi
+		
+		
+		areaTriangulo <- (ladoA * alturaBase) / 2
+		
+		
+		Si ladoA > ladoB Entonces
+			ladoMayor <- ladoA
+		SiNo
+			ladoMayor <- ladoB
+		FinSi
+		Si ladoC > ladoMayor Entonces
+			ladoMayor <- ladoC
+		FinSi
+		
+		Si alturaBase > ladoMayor Entonces
+			mensajeConsistencia <- "ADVERTENCIA: ALTURA INCONSISTENTE"
+		SiNo
+			mensajeConsistencia <- "ALTURA CONSISTENTE"
+		FinSi
+	FinSi
+	
+	Escribir "=== RESULTADO ANALISIS TRIANGULO ==="
+	Escribir "VALIDEZ: ", esValido
+	Escribir "POR LADOS: ", clasificacionLados
+	Escribir "POR ANGULOS: ", clasificacionAngulos
+	Escribir "AREA: ", areaTriangulo
+	Escribir "CONSISTENCIA: ", mensajeConsistencia
+	
+FinAlgoritmo
