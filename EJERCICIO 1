@@ -1,0 +1,126 @@
+EJERCICIO 1
+C++
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string tieneCredencial, estaMatriculado;
+    int retrasoMinutos, totalFaltas;
+    string resultadoAcceso, razonAcceso, prioridadCaso;
+
+    cout << "Tiene credencial? (S/N): ";
+    cin >> tieneCredencial;
+    cout << "Esta matriculado en este horario? (S/N): ";
+    cin >> estaMatriculado;
+    cout << "Cuantos minutos de retraso: ";
+    cin >> retrasoMinutos;
+    cout << "Total de faltas acumuladas: ";
+    cin >> totalFaltas;
+
+    if (tieneCredencial == "N" || tieneCredencial == "n") {
+        resultadoAcceso = "NO PUEDE INGRESAR";
+        razonAcceso = "SIN CREDENCIAL";
+        prioridadCaso = "ALTA";
+    }
+    else if (estaMatriculado == "N" || estaMatriculado == "n") {
+        resultadoAcceso = "NO PUEDE INGRESAR";
+        razonAcceso = "NO ESTA MATRICULADO";
+        prioridadCaso = "ALTA";
+    }
+    else if (totalFaltas >= 5) {
+        resultadoAcceso = "NO PUEDE INGRESAR";
+        razonAcceso = "5 O MAS FALTAS";
+        prioridadCaso = "ALTA";
+    }
+    else if (totalFaltas >= 3) {
+        resultadoAcceso = "INGRESA CON ADVERTENCIA";
+        razonAcceso = "3+ FALTAS PERMITIDO";
+        prioridadCaso = "MEDIA";
+    }
+    else if (retrasoMinutos > 10) {
+        resultadoAcceso = "NO PUEDE INGRESAR";
+        razonAcceso = "RETRASO >10 MIN";
+        prioridadCaso = "MEDIA";
+    }
+    else if (retrasoMinutos > 0) {
+        resultadoAcceso = "INGRESA CON ADVERTENCIA";
+        razonAcceso = "RETRASO 0-10 MIN";
+        prioridadCaso = "BAJA";
+    }
+    else {
+        resultadoAcceso = "INGRESA SIN PROBLEMA";
+        razonAcceso = "PUNTUAL SIN FALTAS";
+        prioridadCaso = "BAJA";
+    }
+
+    cout << "\n=== DECISION FINAL ===" << endl;
+    cout << "RESULTADO: " << resultadoAcceso << endl;
+    cout << "RAZON: " << razonAcceso << endl;
+    cout << "PRIORIDAD: " << prioridadCaso << endl;
+
+    return 0;
+}
+
+
+PSeINT
+Algoritmo Control_Laboratorio
+	Definir credencial, perteneceCurso Como Caracter
+	Definir minutosTarde, faltasAcumuladas Como Entero
+	Definir estadoFinal, motivoDecision, nivelPrioridad Como Cadena
+	
+	Escribir "Trae credencial? (S/N): "
+	Leer credencial
+	Escribir "Pertenece al curso actual? (S/N): "
+	Leer perteneceCurso
+	Escribir "Minutos de retraso: "
+	Leer minutosTarde
+	Escribir "Faltas acumuladas: "
+	Leer faltasAcumuladas
+	
+	Si credencial = "N" Entonces
+		estadoFinal <- "NO PUEDE INGRESAR"
+		motivoDecision <- "SIN CREDENCIAL"
+		nivelPrioridad <- "ALTA"
+	SiNo
+		Si perteneceCurso = "N" Entonces
+			estadoFinal <- "NO PUEDE INGRESAR"
+			motivoDecision <- "NO PERTENECE AL CURSO"
+			nivelPrioridad <- "ALTA"
+		SiNo
+			Si faltasAcumuladas >= 5 Entonces
+				estadoFinal <- "NO PUEDE INGRESAR"
+				motivoDecision <- "5 O MAS FALTAS ACUMULADAS"
+				nivelPrioridad <- "ALTA"
+			SiNo
+				Si faltasAcumuladas >= 3 Entonces
+					estadoFinal <- "INGRESA CON ADVERTENCIA"
+					motivoDecision <- "3 O MAS FALTAS (PERMITIDO)"
+					nivelPrioridad <- "MEDIA"
+				SiNo
+					Si minutosTarde > 10 Entonces
+						estadoFinal <- "NO PUEDE INGRESAR"
+						motivoDecision <- "MAS DE 10 MINUTOS DE RETRASO"
+						nivelPrioridad <- "MEDIA"
+					SiNo
+						Si minutosTarde > 0 Entonces
+							estadoFinal <- "INGRESA CON ADVERTENCIA"
+							motivoDecision <- "RETRASO 0-10 MINUTOS"
+							nivelPrioridad <- "BAJA"
+						SiNo
+							estadoFinal <- "INGRESA SIN PROBLEMA"
+							motivoDecision <- "PUNTUAL Y SIN FALTAS"
+							nivelPrioridad <- "BAJA"
+						FinSi
+					FinSi
+				FinSi
+			FinSi
+		FinSi
+	FinSi
+	
+	Escribir "=== RESULTADO DE ACCESO ==="
+	Escribir "ESTADO: ", estadoFinal
+	Escribir "MOTIVO: ", motivoDecision
+	Escribir "PRIORIDAD: ", nivelPrioridad
+	
+FinAlgoritmo
