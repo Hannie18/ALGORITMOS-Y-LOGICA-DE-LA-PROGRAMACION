@@ -1,0 +1,279 @@
+EJERCICIO 2
+C++
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main (){
+//declarar variables
+string nombre;
+float promedio, ingreso, asistencia;
+int materiasPerdidas, proyectos;
+
+cout << "Ingresa tu nombre: " << endl;
+cin >> nombre;
+
+cout << "Ingresa el porcentaje de tu asistencia ( 1 al 100): " << endl;
+cin >> asistencia;
+
+cout << "Ingresa tu promedio academico: " << endl;
+cin >> promedio;
+
+cout << " Ingresa el numero de materias que a perdido, si no es asi poner 0: " << endl;
+cin >> materiasPerdidas;
+
+cout << " Participacion de proyectos: ingresar el numero de proyectos que elaborar, si no es asi poner 0 : " << endl;
+cin >> proyectos;
+
+cout << " Ingresa tu ingreso familiar de cada mes : " << endl ;
+cin >> ingreso;
+
+// condionales
+
+if (asistencia >= 90){
+        if (promedio >= 9){
+                if (materiasPerdidas <= 0){
+        cout << "Estudiante " << nombre << ", usted ha recibido una beca completa." << endl;
+        cout << "Tiene un promedio de " << promedio << " y una asistencia de " << asistencia <<endl;
+        cout << "Numero de participaciones en proyectos: " << proyectos << " Ingreso familiares de: " << ingreso << endl;
+        cout << "--------------------------------OBSERVACION-----------------------"<< endl;
+        cout << "Felicidades! Esperamos que su promedio se mantega, buenos existos." << endl;
+                } else{
+                 cout << "Estudiante " << nombre << ", usted no puede recibir beca completa, aunque tenga un promedio superior a 9." << endl;
+                 cout << "Motivo: El estudiante a perdido " << materiasPerdidas << " materias." << endl;
+                 cout << "Con esta informacion, se le entregado una beca parcial." << endl;
+        cout << "Tiene un promedio de " << promedio << " y una asistencia de " << asistencia <<endl;
+        cout << "Numero de participaciones en proyectos: " << proyectos << " Ingreso familiar de: " << ingreso << endl;
+        cout << "Materias perdidas : " << materiasPerdidas << endl;
+        cout << "--------------------------------- OBSERVACION----------------------------------"<< endl;
+        cout << "Para obtener una beca completa, es necesario a ver aprobado todas las materias." << endl;
+
+                }
+
+        } else{
+
+        cout << "No puede recibir ninguna beca. " << endl;
+        cout<< "Su promedio de " << promedio << " es muy bajo." << endl;
+        cout << "--------------OBSERVACION-------------------" << endl;
+        cout << "Recomendamos esforzarce mas es sus estudios." << endl;
+        }
+
+
+
+
+        }else if(asistencia >= 85){
+            if (promedio>= 8){
+                if (materiasPerdidas <=1){
+                     if (proyectos >0 ){
+                if (ingreso <500){
+cout << " Estimado estudiante, usted ha recibido una beca parcial y una ayuda con materiales. " << endl;
+cout << "--------------------------" << nombre << "-------------------------" << endl;
+cout << "Asistencia del " << asistencia << " porciento y " << " promedio de " << promedio << endl;
+cout << "Materias perdidas: " << materiasPerdidas << " Ingreso familiar: " << ingreso << endl;
+cout << "Numero de proyectos a los que ha participado: " << proyectos << endl;
+        }
+        else{
+        cout << "Estimado estudiante, usted ha recibido una beca parcial. " << endl;
+        cout << "----"<< nombre << "-----" << endl;
+        cout << "Asistencia del " << asistencia << " porciento y " << " promedio de " << promedio << endl;
+        cout << "Numero de proyectos a los que ha participado: " << proyectos << endl;
+        cout << "Otorga un buen ingreso familiar." << endl;
+        cout << "---- OBSERVACION FINAL ----" << endl;
+        cout << " Se recomienda seguir con ese promedio, para no perder la beca" << endl;
+        }
+        }else{
+                if (ingreso <500){
+cout << " Estimado estudiante, usted ha recibido una beca parcial." << endl;
+cout << "-----" << nombre << "-----" << endl;
+cout << "Asistencia del " << asistencia << " porciento y " << " promedio de " << promedio << endl;
+cout << "Materias perdidas: " << materiasPerdidas << " Ingreso familiar: " << ingreso << endl;
+cout << "No ha participado en ningun proyecto"<< endl;
+cout << "----------------------------- OBSERVACION FINAL ----------------------------" << endl;
+cout << " Se recomienda participar en algun proyecto, para tener un mayor conocimiento general." << endl;
+        }else{
+        cout << "Estimado estudiante, usted ha recibido una beca parcial. " << endl;
+        cout << "----"<< nombre << "-----" << endl;
+        cout << "Asistencia del " << asistencia << " porciento y " << " promedio de " << promedio << endl;
+        cout << "No ha participado en ningun proyecto"<< endl;
+        cout << "Otorga un buen ingreso familiar." << endl;
+        cout << "---------------- OBSERVACION FINAL -----------------" << endl;
+        cout << " Se recomienda participar en algun proyecto, para tener un mayor conocimiento general." << endl;
+        }
+
+         }
+                } else{
+                if (proyectos >0 ){
+                if (ingreso <500){
+cout << " Estimado estudiante, le podemos ayudar con los materiales de la institucion. " << endl;
+cout << "Sus datos, nos permite otorgarle esta ayuda." << endl;
+cout << nombre << ", asistencia del " << asistencia << " porciento y " << " promedio de " << promedio << endl;
+cout << "Materias perdidas: " << materiasPerdidas << " Ingreso familiar: " << ingreso << endl;
+        }
+        else{
+        cout << "Estimado estudiante, no puede recibir ninguna beca. " << endl;
+        cout << "Pues sus datos, no cumplen nuestro requerimiento. " << endl;
+        }
+        }
+        else{
+                cout << "Estimado estudiante, no puede recibir ninguna beca. " << endl;
+                cout << "Pues sus datos, no cumplen nuestro requerimiento. " << endl;
+         }
+            }
+
+            }else{
+              cout << "No puede recibir ninguna beca. " << endl;
+            cout<< "Su promedio de " << promedio << " es muy bajo." << endl;
+            }
+
+
+
+
+
+    }else if (asistencia>= 80){
+            if (promedio> 7){
+                if (materiasPerdidas <= 0){
+        cout << "No puede recibir ninguna beca. " << endl;
+        cout<< "Su promedio de " << promedio << " cumple con los requistos, pero el resto no." << endl;
+        cout << nombre << ", asistencia del " << asistencia << " porciento " <<  endl;
+         cout << "Materias perdidas: " << materiasPerdidas << " Ingreso familiar: " << ingreso << endl;
+         cout << "Numero de participaciones en proyectos: " << proyectos << endl;
+        cout << "-------------------------------OBSERVACION------------------------------------" << endl;
+        cout << "Recomendamos que su asistencia sea superior al 85%, para obtener beneficios" << endl;
+                } else{
+                if (proyectos >0 ){
+                if (ingreso <500){
+cout << " Estimado estudiante, le podemos ayudar con los materiales de la institucion. " << endl;
+cout << "Sus datos, nos permite otorgarle esta ayuda." << endl;
+cout << nombre << ", asistencia del " << asistencia << " porciento y " << " promedio de " << promedio << endl;
+cout << "Materias perdidas: " << materiasPerdidas << " Ingreso familiar: " << ingreso << endl;
+        }
+        else{
+        cout << "Estimado estudiante, no puede recibir ninguna beca. " << endl;
+        cout << "Pues sus datos, no cumplen que nuestro requerimiento. " << endl;
+        }
+        }
+        else{
+                cout << "Estimado estudiante, no puede recibir ninguna beca. " << endl;
+                cout << "Pues sus datos, no cumplen que nuestro requerimiento. " << endl;
+         }
+
+        } }else{
+            cout << "No puede recibir ninguna beca. " << endl;
+            cout<< "Su promedio de " << promedio << " es muy bajo." << endl;}
+
+
+        }else {
+        cout << "No tiene acceso a recibir ninguna beca, pues su asustencia es menor al 80 %" << endl;}
+
+return 0;
+}
+
+
+PSeINT
+
+Algoritmo SistemaBecas
+    Definir nombreEstudiante Como Cadena
+    Definir promedioFinal, ingresoFamiliar, porcentajeAsistencia Como Real
+    Definir materiasReprobadas, numeroProyectos Como Entero
+	
+    
+    Escribir "Ingresa tu nombre:"
+    Leer nombreEstudiante
+	
+    Escribir "Ingresa tu porcentaje de asistencia (1 a 100):"
+    Leer porcentajeAsistencia
+	
+    Escribir "Ingresa tu promedio academico:"
+    Leer promedioFinal
+	
+    Escribir "Ingresa el numero de materias reprobadas:"
+    Leer materiasReprobadas
+	
+    Escribir "Numero de proyectos realizados:"
+    Leer numeroProyectos
+	
+    Escribir "Ingresa tu ingreso familiar mensual:"
+    Leer ingresoFamiliar
+	
+    // Proceso
+    Si porcentajeAsistencia >= 90 Entonces
+        
+        Si promedioFinal >= 9 Entonces
+            
+            Si materiasReprobadas = 0 Entonces
+                Escribir "Estudiante ", nombreEstudiante, " ha recibido una beca completa."
+            Sino
+                Escribir "No puede recibir beca completa."
+                Escribir "Se le otorga una beca parcial."
+            FinSi
+            
+        Sino
+            Escribir "No recibe beca. Promedio bajo."
+        FinSi
+		
+    FinSi
+	Si porcentajeAsistencia >= 85 Entonces
+			
+			Si promedioFinal >= 8 Entonces
+				
+				Si materiasReprobadas <= 1 Entonces
+					
+					Si numeroProyectos > 0 Entonces
+						
+						Si ingresoFamiliar < 500 Entonces
+							Escribir "Beca parcial + ayuda de materiales."
+						Sino
+							Escribir "Beca parcial."
+						FinSi
+						
+					Sino
+						
+						Si ingresoFamiliar < 500 Entonces
+							Escribir "Beca parcial."
+						Sino
+							Escribir "Beca parcial."
+						FinSi
+						
+					FinSi
+					
+				Sino
+					
+					Si numeroProyectos > 0 Y ingresoFamiliar < 500 Entonces
+						Escribir "Ayuda de materiales."
+					Sino
+						Escribir "No recibe beca."
+					FinSi
+					
+				FinSi
+				
+			Sino
+				Escribir "No recibe beca. Promedio bajo."
+			FinSi
+	finsi
+			
+		 Si porcentajeAsistencia >= 80 Entonces
+				
+				Si promedioFinal > 7 Entonces
+					
+					Si materiasReprobadas = 0 Entonces
+						Escribir "No recibe beca, pero puede mejorar asistencia."
+					Sino
+						
+						Si numeroProyectos > 0 Y ingresoFamiliar < 500 Entonces
+							Escribir "Ayuda de materiales."
+						Sino
+							Escribir "No recibe beca."
+						FinSi
+						
+					FinSi
+					
+				Sino
+					Escribir "No recibe beca. Promedio bajo."
+				FinSi
+				
+			Sino
+				Escribir "No recibe beca. Asistencia menor al 80%."
+			FinSi
+			
+FinAlgoritmo
+
