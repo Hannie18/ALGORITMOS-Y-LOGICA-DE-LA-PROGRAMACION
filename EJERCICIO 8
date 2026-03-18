@@ -1,0 +1,152 @@
+C++ 
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+
+    string nombre;
+    float nota1, nota2, nota3, promedio = 0;
+    float asistencia;
+    string proyectoFinal, plagio;
+    string estado, observacionD = "", observacionR = "";
+
+    cout << "Ingresa tu nombre: ";
+    cin >> nombre;
+
+    cout << "Ingresa la nota 1: ";
+    cin >> nota1;
+
+    cout << "Ingresa la nota 2: ";
+    cin >> nota2;
+
+    cout << "Ingresa la nota 3: ";
+    cin >> nota3;
+
+    cout << "Ingrese porcentaje de asistencia: ";
+    cin >> asistencia;
+
+    cout << "¿Entregaste el proyecto final? (si/no): ";
+    cin >> proyectoFinal;
+
+    cout << "¿Has cometido plagio? (si/no): ";
+    cin >> plagio;
+
+    if (plagio == "si") {
+        estado = "Reprobado automaticamente";
+        observacionD = "El proyecto no puede tener plagio";
+    }
+    else {
+
+        if (asistencia < 70) {
+            estado = "Reprobado";
+            observacionD = "Asista mas a clases";
+        }
+        else {
+
+            if (proyectoFinal == "no") {
+                estado = "Recuperacion";
+                observacionR = "Entregar trabajos a tiempo";
+            }
+            else {
+                promedio = (nota1 + nota2 + nota3) / 3;
+
+                if (promedio >= 7) {
+                    estado = "Aprobado";
+                }
+                else if (promedio >= 5) {
+                    estado = "Recuperacion";
+                }
+                else {
+                    estado = "Reprobado";
+                }
+            }
+        }
+    }
+
+    // Rendimiento irregular
+    if ((nota1 == 10 || nota2 == 10 || nota3 == 10) &&
+        ((nota1 < 4 && nota2 < 4) ||
+         (nota1 < 4 && nota3 < 4) ||
+         (nota2 < 4 && nota3 < 4))) {
+
+        observacionR = "Rendimiento irregular";
+    }
+
+    // Caso excelente
+    if (nota1 >= 9 && nota2 >= 9 && nota3 >= 9 && asistencia >= 95) {
+        estado = "Felicitaciones, usted esta aprobado";
+    }
+
+    cout << "\nEstudiante: " << nombre << endl;
+    cout << "Promedio: " << promedio << endl;
+    cout << "Estado academico: " << estado << endl;
+    cout << "Observacion disciplinaria: " << observacionD << endl;
+    cout << "Observacion de rendimiento: " << observacionR << endl;
+
+    system("pause");
+    return 0;
+}
+
+
+
+
+PSeINT
+Algoritmo AprobarAno 
+Definir nombre Como Cadena 
+Definir nota1, nota2, nota3, promedio Como Real 
+Definir asistencia Como Real 
+Definir proyectoFinal, plagio Como Cadena 
+Definir estado, observacionD, observacionR Como Cadena 
+Escribir "Ingresa tu nombre: " 
+Leer nombre 
+Escribir "Ingresa la nota 1: " 
+Leer nota1 
+Escribir "Ingresa la nota 2: " 
+Leer nota2 
+Escribir "Ingresa la nota 3: " 
+Leer nota3 
+Escribir "Ingrese porcentaje de asistencia del 1 al 100: " 
+Leer asistencia 
+Escribir "¿Entregaste el proyecto final? (si/no): " 
+Leer proyectoFinal 
+Escribir "¿Has cometido plagio? (si/no): " 
+Leer plagio 
+// Proceso 
+Si plagio = "si" Entonces 
+estado <- "Reprobado automaticamente" 
+observacionD <- "El proyecto no puede tener plagio" 
+SiNo 
+Si asistencia < 70 Entonces 
+estado <- "Reprobado" 
+observacionD <- "Recomendacion: asistir mas a clases" 
+SiNo 
+Si proyectoFinal = "no" Entonces 
+estado <- "Recuperacion" 
+observacionR <- "Debe elaborar y entregar el proyecto final" 
+SiNo 
+promedio <- (nota1 + nota2 + nota3) / 3 
+Si promedio >= 7 Entonces 
+estado <- "Aprobado" 
+Sino 
+Si promedio >= 5 Entonces 
+estado <- "Recuperacion" 
+Sino 
+estado <- "Reprobado" 
+FinSi 
+FinSi 
+FinSi 
+FinSi 
+FinSi 
+Si (nota1 = 10 O nota2 = 10 O nota3 = 10) Y ((nota1 < 4 Y nota2 < 4) O(nota1 < 4 Y nota3 < 4) O(nota2 < 4 Y nota3 < 4)) entonces 
+observacionR <- "Rendimiento irregular" 
+FinSi 
+Si nota1 >= 9 Y nota2 >= 9 Y nota3 >= 9 Y asistencia >= 95 Entonces 
+estado <- "Felicitaciones, usted esta aprobado" 
+FinSi 
+Escribir "Estudiante: ", nombre 
+Escribir "Promedio: ", promedio 
+Escribir "Estado academico: ", estado 
+Escribir "Observacion disciplinaria: ", observacionD 
+Escribir "Observacion de rendimiento: ", observacionR 
+FinAlgoritmo 
