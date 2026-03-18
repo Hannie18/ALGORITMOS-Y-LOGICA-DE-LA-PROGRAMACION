@@ -1,0 +1,153 @@
+C++
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    double saldoUsuario, montoSolicitado, saldoRestanteUsuario, efectivoCajeroRestante;
+    int billetes20, billetes10, billetes5, billetes1;
+    int necesarios20, necesarios10, necesarios5, necesarios1;
+    int entregados20, entregados10, entregados5, entregados1;
+    int resto1, resto2;
+    string mensajeOperacion;
+
+    cout << "======================= CAJERO AUTOMATICO =========================" << endl;
+
+
+    cout << "Su saldo disponible: "<<endl;
+    cin >> saldoUsuario;
+    cout << "Monto a retirar: "<<endl;
+    cin >> montoSolicitado;
+    cout << "Inventario cajero - Billetes de 20: "<<endl;
+    cin >> billetes20;
+    cout << "Billetes de 10: "<<endl;
+    cin >> billetes10;
+    cout << "Billetes de 5: "<<endl;
+    cin >> billetes5;
+    cout << "Billetes de 1: "<<endl;
+    cin >> billetes1;
+
+    if (montoSolicitado <= 0 || montoSolicitado > saldoUsuario) {
+        mensajeOperacion = "ERROR: MONTO INVALIDO";
+        entregados20 = entregados10 = entregados5 = entregados1 = 0;
+        saldoRestanteUsuario = saldoUsuario;
+        efectivoCajeroRestante = billetes20*20.0 + billetes10*10.0 + billetes5*5.0 + billetes1*1.0;
+    } else {
+
+        necesarios20 = (int)(montoSolicitado / 20);
+        resto1 = (int)(montoSolicitado) % 20;
+        necesarios10 = resto1 / 10;
+        resto2 = resto1 % 10;
+        necesarios5 = resto2 / 5;
+        necesarios1 = resto2 % 5;
+
+
+        if (necesarios20 > billetes20 || necesarios10 > billetes10 ||
+            necesarios5 > billetes5 || necesarios1 > billetes1) {
+            mensajeOperacion = "ERROR: SIN BILLETES SUFICIENTES";
+            entregados20 = entregados10 = entregados5 = entregados1 = 0;
+            saldoRestanteUsuario = saldoUsuario;
+            efectivoCajeroRestante = billetes20*20.0 + billetes10*10.0 + billetes5*5.0 + billetes1*1.0;
+        } else {
+
+            entregados20 = necesarios20;
+            entregados10 = necesarios10;
+            entregados5 = necesarios5;
+            entregados1 = necesarios1;
+
+            saldoRestanteUsuario = saldoUsuario - montoSolicitado;
+            efectivoCajeroRestante = (billetes20*20.0 + billetes10*10.0 + billetes5*5.0 + billetes1*1.0) - montoSolicitado;
+
+            mensajeOperacion = "OPERACION EXITOSA";
+        }
+    }
+
+    cout << "\n=== RESULTADO OPERACION ===" << endl;
+    cout << "BILLETES 20: " << entregados20 << endl;
+    cout << "BILLETES 10: " << entregados10 << endl;
+    cout << "BILLETES 5: " << entregados5 << endl;
+    cout << "BILLETES 1: " << entregados1 << endl;
+    cout << "SALDO RESTANTE: $" << saldoRestanteUsuario << endl;
+    cout << "EFECTIVO CAJERO: $" << efectivoCajeroRestante << endl;
+    cout << "MENSAJE: " << mensajeOperacion << endl;
+
+    return 0;
+}
+
+
+
+
+PSeINT
+Algoritmo Cajero_Automatico
+	Definir saldoUsuario, montoSolicitado, saldoRestanteUsuario, efectivoCajeroRestante Como Real
+	Definir billetes20, billetes10, billetes5, billetes1 Como Entero
+	Definir necesarios20, necesarios10, necesarios5, necesarios1 Como Entero
+	Definir entregados20, entregados10, entregados5, entregados1 Como Entero
+	Definir resto1, resto2 Como Entero
+	Definir mensajeOperacion Como Cadena
+	
+	Escribir "======================= CAJERO AUTOMATICO ========================="
+	
+	Escribir "Su saldo disponible: "
+	Leer saldoUsuario
+	Escribir "Monto a retirar: "
+	Leer montoSolicitado
+	Escribir "Inventario cajero - Billetes de 20: "
+	Leer billetes20
+	Escribir "Billetes de 10: "
+	Leer billetes10
+	Escribir "Billetes de 5: "
+	Leer billetes5
+	Escribir "Billetes de 1: "
+	Leer billetes1
+	
+	Si montoSolicitado <= 0 O montoSolicitado > saldoUsuario Entonces
+		mensajeOperacion <- "ERROR: MONTO INVALIDO"
+		entregados20 <- 0
+		entregados10 <- 0
+		entregados5 <- 0
+		entregados1 <- 0
+		saldoRestanteUsuario <- saldoUsuario
+		efectivoCajeroRestante <- (billetes20*20) + (billetes10*10) + (billetes5*5) + billetes1
+	SiNo
+		necesarios20 <- trunc(montoSolicitado / 20)
+		resto1 <- trunc(montoSolicitado mod 20)
+		necesarios10 <- trunc(resto1 / 10)
+		resto2 <- trunc(resto1 mod 10)
+		necesarios5 <- trunc(resto2 / 5)
+		necesarios1 <- trunc(resto2 mod 5)
+		
+		Si necesarios20 > billetes20 O necesarios10 > billetes10 O necesarios5 > billetes5 O necesarios1 > billetes1 Entonces
+			mensajeOperacion <- "ERROR: SIN BILLETES SUFICIENTES"
+			entregados20 <- 0
+			entregados10 <- 0
+			entregados5 <- 0
+			entregados1 <- 0
+			saldoRestanteUsuario <- saldoUsuario
+			efectivoCajeroRestante <- (billetes20*20) + (billetes10*10) + (billetes5*5) + billetes1
+		SiNo
+			entregados20 <- necesarios20
+			entregados10 <- necesarios10
+			entregados5 <- necesarios5
+			entregados1 <- necesarios1
+			
+			saldoRestanteUsuario <- saldoUsuario - montoSolicitado
+			efectivoCajeroRestante <- (billetes20*20 + billetes10*10 + billetes5*5 + billetes1) - montoSolicitado
+			
+			mensajeOperacion <- "OPERACION EXITOSA"
+		FinSi
+	FinSi
+	
+	Escribir "=== RESULTADO OPERACION ==="
+	Escribir "BILLETES 20: ", entregados20
+	Escribir "BILLETES 10: ", entregados10
+	Escribir "BILLETES 5: ", entregados5
+	Escribir "BILLETES 1: ", entregados1
+	Escribir "SALDO RESTANTE: $", saldoRestanteUsuario
+	Escribir "EFECTIVO CAJERO: $", efectivoCajeroRestante
+	Escribir "MENSAJE: ", mensajeOperacion
+	FinAlgoritmo
+
+
+
